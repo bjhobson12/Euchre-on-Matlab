@@ -1,7 +1,7 @@
 %% Copyright
 % Author: Benjamin Hobson
 % Date: Nov 1, 2018
-% Name: Euchre V1 Verso L''Alto
+% Name: Euchre V1 Verso L'Alto
 % Version: 1.0
 
 %% Setup

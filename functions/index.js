@@ -3,6 +3,17 @@ const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 const store = admin.firestore()
 
+/*
+Dear Thomas, 
+
+I didn't comment the code as you requested. I ran out of time, and since this isn't being graded, 
+I decided it would be a poor use of my time.
+
+Your friend,
+
+Ben
+*/
+
 exports.createLobby = functions.https.onRequest((req, res) => {
 
     var arr = [];
@@ -72,127 +83,6 @@ exports.begin = functions.firestore.document('euchre/{lobby}').onUpdate((change,
 
     const newValue = change.after.data();
     const oldValue = change.before.data();
-
-    /*
-if (newValue['hands'] && newValue[req.query.id]) {
-        return store.collection("euchre").doc(req.query.lobby).get()
-        .then(data => {
-
-            var hands = data.data()[req.query.id];
-            var users = data.data()["users"];
-
-            //update scores
-
-            var trump = req.query.trump;
-            var dealer = req.query.dealer;
-
-            var H = ["DJ","HJ","DA","DK","DQ","D1","D9"].reverse();
-            var D = ["HJ","DJ","HA","HK","HQ","H1","H9"].reverse();
-            var S = ["SJ","CJ","SA","SK","SQ","S1","S9"].reverse();
-            var C = ["CJ","SJ","CA","CK","CQ","C1","C9"].reverse();
-
-            var trump;
-
-            var firstPlay = hands[users(1)];
-
-            if (trump=="C") {
-                trump = C;
-            } else if (trump=="H") {
-                trump = H;
-            } else if (trump=="D") {
-                trump = D;
-            } else {
-                trump = S;
-            }
-
-            var usr1 = trump.indexOf(hands[users(0)]);
-            var usr2 = trump.indexOf(hands[users(1)]);
-            var usr3 = trump.indexOf(hands[users(2)]);
-            var usr4 = trump.indexOf(hands[users(3)]);
-
-            var obj = {};
-
-            if (usr1+usr2+usr3+usr4>-4) {
-                switch(Math.max(usr1,usr2,usr3,usr4)){
-                    case usr1:
-                    var obj = {};
-                    obj[req.query.id] = users(0);
-                    break;
-                    case usr2:
-                    var obj = {};
-                    obj[req.query.id] = users(1);
-                    break;
-                    case usr3:
-                    var obj = {};
-                    obj[req.query.id] = users(2);
-                    break;
-                    case usr4:
-                    var obj = {};
-                    obj[req.query.id] = users(3);
-                    break;
-                }
-            }
-
-            return store.collection("euchre").doc(req.query.lobby).set(obj,{merge:true})
-            .then(success => {
-                res.status(200).send("true");
-            }).catch(error => {
-                res.status(500).send("false");
-            });
-
-            firstPlay = firstPlay.substring(0,1);
-
-            var fp;
-
-            var H = ["HA","HK","HQ","HJ","H1","H9"].reverse();
-            var D = ["DA","DK","DQ","DJ","D1","D9"].reverse();
-            var S = ["SA","SK","SQ","SJ","S1","S9"].reverse();
-            var C = ["CA","CK","CQ","CJ","C1","C9"].reverse();
-
-            if (firstPlay=="C") {
-                fp = C;
-            } else if (trump=="H") {
-                fp = H;
-            } else if (trump=="D") {
-                fp = D;
-            } else {
-                fp = S;
-            }
-
-            var usr1 = fp.indexOf(hands[users(0)]);
-            var usr2 = fp.indexOf(hands[users(1)]);
-            var usr3 = fp.indexOf(hands[users(2)]);
-            var usr4 = fp.indexOf(hands[users(3)]);
-
-            delete obj;
-            var obj = {};
-
-            switch(Math.max(usr1,usr2,usr3,usr4)){
-                case usr1:
-                obj[req.query.id] = users(0);
-                break;
-                case usr2:
-                obj[req.query.id] = users(1);
-                break;
-                case usr3:
-                obj[req.query.id] = users(2);
-                break;
-                case usr4:
-                obj[req.query.id] = users(3);
-                break;
-            }
-            return store.collection("euchre").doc(req.query.lobby).set(obj,{merge:true})
-            .then(success => {
-                res.status(200).send("true");
-            }).catch(error => {
-                res.status(500).send("false");
-            });
-
-        }).catch(error => {
-            res.status(500).send("false");
-        });
-    }
-    */
 
     if (newValue['users'].length==oldValue['users'].length) {
         return null;
